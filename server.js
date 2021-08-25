@@ -32,6 +32,13 @@ var listener = app.listen(process.env.PORT, function () {
 
 let response = {};
 
+app.get("/api", function (req, res){
+  response["unix"] = new Date().getTime();
+  response["utc"] = new Date().toUTCString();
+
+  res.json(response);
+});
+
 app.get("/api/:date", function (req, res) {
   let inputDate = new Date(req.params.date);
 
@@ -41,13 +48,6 @@ app.get("/api/:date", function (req, res) {
     response["unix"] = inputDate.getTime();
     response["utc"] =  inputDate.toUTCString();
   }
-
-  res.json(response);
-});
-
-app.get("/api", function (req, res){
-  response["unix"] = new Date().getTime();
-  response["utc"] = new Date().toUTCString();
 
   res.json(response);
 });
