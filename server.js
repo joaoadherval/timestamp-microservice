@@ -25,8 +25,22 @@ app.get("/api/hello", function (req, res) {
 });
 
 
-
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
+});
+
+let response = {};
+
+app.get("/api/:date", function (req, res) {
+  let inputDate = new Date(req.params.date);
+
+  if (isNaN(inputDate)) {
+    response = { error : "Invalid Date" };
+  } else {
+    response["unix"] = "";
+    response["utc"] =  "";
+  }
+
+  res.json(respose);
 });
