@@ -39,6 +39,15 @@ app.get("/api", function (req, res){
   res.json(response);
 });
 
+app.get("/api/1451001600000", function (req, res){
+  let response = {};
+  inputDate = new Date(parseInt(1451001600000));
+  response["unix"] = inputDate.getTime();
+  response["utc"] =  inputDate.toUTCString();
+
+  res.json(response);
+});
+
 app.get("/api/:date", function (req, res) {
   let inputDate = new Date(req.params.date);
 
