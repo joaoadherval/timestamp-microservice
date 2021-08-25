@@ -33,6 +33,7 @@ var listener = app.listen(process.env.PORT, function () {
 let response = {};
 
 app.get("/api", function (req, res){
+  let response = {};
   response["unix"] = new Date().getTime();
   response["utc"] = new Date().toUTCString();
 
@@ -49,9 +50,11 @@ app.get("/api/1451001600000", function (req, res){
 });
 
 app.get("/api/:date", function (req, res) {
-  let inputDate = new Date(req.params.date);
+  let response = {};
 
-  if (isNaN(inputDate)) {
+  inputDate = new Date(req.params.date);
+
+  if (inputDate == "Invalid Date") {
     response = { error : "Invalid Date" };
   } else {
     response["unix"] = inputDate.getTime();
