@@ -42,7 +42,7 @@ app.get("/api/:date", function (req, res) {
     response["utc"] =  inputDate.toUTCString();
   }
 
-  res.json(respose);
+  res.json(response);
 });
 
 app.get("/api", function (req, res){
